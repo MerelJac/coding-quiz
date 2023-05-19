@@ -7,7 +7,7 @@ var printSection = document.querySelector(".printResults");
 
 
 // set duration of timer -- done
-var secondsLeft = 2
+var secondsLeft = 5
 // when you click the start button, the timer begins -- done
 function setTimer() {
     // Set interval in variable
