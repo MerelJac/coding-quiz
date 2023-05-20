@@ -7,13 +7,27 @@ var printSection = document.querySelector(".printResults");
 var quizTemplate = document.querySelector("#quiz");
 
 var questions = [
-    {question: "Do you like coding?",
-    possibleAnswers:[{"text":"Yes","correct":true},
-    {"text":"No","correct":false}]
+    {
+    question: 'Do you like coding?',
+    possibleAnswer1: 'Yes',
+    possibleAnswer2: 'Sometimes',
+    possibleAnswer3: 'It is hard',
+    possibleAnswer4: 'No'
     },
-    {question: "What language is for styling?",
-    possibleAnswers:[{"text":"JavaScript","correct":false},
-    {"text":"CSS","correct":true}]}
+    {
+    question: 'What is your favorite food?',
+    possibleAnswer1: 'Pizza',
+    possibleAnswer2: 'French Fries',
+    possibleAnswer3: 'Soup',
+    possibleAnswer4: 'Meat'
+    },
+    {
+    question: 'Do you eat your favorite snacks while coding?',
+    possibleAnswer1: 'Yes',
+    possibleAnswer2: 'Sometimes',
+    possibleAnswer3: 'I know I shouldnt',
+    possibleAnswer4: 'No'
+    }
 ]
 
 // set duration of timer -- done
@@ -43,7 +57,6 @@ function startTimer() {
 };
 
 
-
 // having trouble with print results function // creating HTML lements 
 function printResults() {
     // write new verbage 
@@ -71,11 +84,35 @@ function printResults() {
 
 };
 
-// make quiz below
-var quizContainer = document.getElementById('quiz');
+// the following lines will print the question and possible answers in the HTML button containers
+var quizContainer = document.getElementById('question');
+var answerContainer1 = document.getElementById('answerOption1');
+var answerContainer2 = document.getElementById('answerOption2');
+var answerContainer3 = document.getElementById('answerOption3');
+var answerContainer4 = document.getElementById('answerOption4');
 var resultsContainer = document.getElementById('results');
 var submitButton = document.getElementById('submit');
 
+// print the object arrays in the quiz section of the div 
+// the DOMContentLoaded should tell the browser to pull the updated HTML file
+document.addEventListener('DOMContentLoaded', function() {
+    quizContainer.innerText = questions[0].question;
+    answerContainer1.innerText = questions[0].possibleAnswer1;
+    answerContainer2.innerText = questions[0].possibleAnswer2;
+    answerContainer3.innerText = questions[0].possibleAnswer3;
+    answerContainer4.innerText = questions[0].possibleAnswer4;
+})
+
+// make for loop for quiz questions/possible answers
+// chaange i < to be based off the timer
+
+
+// for (var i = 0; i < questions.length; i++) {
+//     let index = Math.floor(Math.random() * quizPossileQuestions)
+//     let quizQuestion = quizPossileQuestions[index];
+//     quizContainer.textContent = quizQuestion;
+    
+// };
 
 
 // when the timer begins, the first question pops onto the screen
@@ -92,5 +129,5 @@ var submitButton = document.getElementById('submit');
 
 // when timer == -1, (ends) print total score on page. 
 
-startBtn.addEventListener("click", startTimer);
+// startBtn.addEventListener("click", startTimer);
 startBtn.addEventListener("click", startQuiz);
