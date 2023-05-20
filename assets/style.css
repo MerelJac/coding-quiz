@@ -12,3 +12,18 @@ header {
 #timer {
 }
 
+#answerContainer {
+    display: flex;
+}
+
+#quiz {
+    display: none;
+    align-items: center;
+    flex-direction: column;
+}
+
+#results {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
