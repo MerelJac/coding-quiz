@@ -129,5 +129,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // when timer == -1, (ends) print total score on page. 
 
-// startBtn.addEventListener("click", startTimer);
+startBtn.addEventListener("click", startTimer);
 startBtn.addEventListener("click", startQuiz);
