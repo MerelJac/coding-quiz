@@ -5,6 +5,16 @@ var timerEl = document.querySelector("#timer");
 // make varibale for printResults section in HTML
 var printSection = document.querySelector(".printResults");
 var quizTemplate = document.querySelector("#quiz");
+var answerBtn = document.querySelector('#answerOption1');
+
+// the following lines will print the question and possible answers in the HTML button containers
+var quizContainer = document.getElementById('question');
+var answerContainer1 = document.getElementById('answerOption1');
+var answerContainer2 = document.getElementById('answerOption2');
+var answerContainer3 = document.getElementById('answerOption3');
+var answerContainer4 = document.getElementById('answerOption4');
+var resultsContainer = document.getElementById('results');
+var submitButton = document.getElementById('submit');
 
 var questions = [
     {
@@ -34,7 +44,6 @@ var questions = [
 var secondsLeft = 5
 // when you click the start button, the timer begins -- done
 function startQuiz() {
-    // produce quiz upon click - not working
     var quiz = document.querySelector("#quiz");
     quiz.style.display = "flex";
 };
@@ -84,17 +93,7 @@ function printResults() {
 
 };
 
-// the following lines will print the question and possible answers in the HTML button containers
-var quizContainer = document.getElementById('question');
-var answerContainer1 = document.getElementById('answerOption1');
-var answerContainer2 = document.getElementById('answerOption2');
-var answerContainer3 = document.getElementById('answerOption3');
-var answerContainer4 = document.getElementById('answerOption4');
-var resultsContainer = document.getElementById('results');
-var submitButton = document.getElementById('submit');
 
-// print the object arrays in the quiz section of the div 
-// the DOMContentLoaded should tell the browser to pull the updated HTML file
 document.addEventListener('DOMContentLoaded', function() {
     quizContainer.innerText = questions[0].question;
     answerContainer1.innerText = questions[0].possibleAnswer1;
@@ -102,6 +101,19 @@ document.addEventListener('DOMContentLoaded', function() {
     answerContainer3.innerText = questions[0].possibleAnswer3;
     answerContainer4.innerText = questions[0].possibleAnswer4;
 })
+
+function showNextQuestion() {
+    for (var i = 1; i < 2; i++) {
+        document.addEventListener('DOMContentLoaded', function() {
+            quizContainer.innerText = questions[i].question;
+            answerContainer1.innerText = questions[i].possibleAnswer1;
+            answerContainer2.innerText = questions[i].possibleAnswer2;
+            answerContainer3.innerText = questions[i].possibleAnswer3;
+            answerContainer4.innerText = questions[i].possibleAnswer4;
+        })
+    }
+};
+
 
 // make for loop for quiz questions/possible answers
 // chaange i < to be based off the timer
@@ -131,3 +143,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
 startBtn.addEventListener("click", startTimer);
 startBtn.addEventListener("click", startQuiz);
+answerBtn.addEventListener("click", showNextQuestion);
