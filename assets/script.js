@@ -6,7 +6,6 @@ var timerEl = document.querySelector("#timer");
 var printSection = document.querySelector(".printResults");
 var quizTemplate = document.querySelector("#quiz");
 
-console.log(document.body.children[2]);
 var questions = [
     {question: "Do you like coding?",
     possibleAnswers:[{"text":"Yes","correct":true},
@@ -22,10 +21,11 @@ var secondsLeft = 5
 // when you click the start button, the timer begins -- done
 function startQuiz() {
     // produce quiz upon click - not working
-    var quiz = document.getElementById("quiz");
+    var quiz = document.querySelector("#quiz");
     quiz.style.display = "flex";
+};
 
-
+function startTimer() {
     // Set interval in variable
     var timerInterval = setInterval(() => {
         secondsLeft--;
@@ -33,7 +33,10 @@ function startQuiz() {
 
         if (secondsLeft === 0) {clearInterval(timerInterval);
         // when timer runs out, run this function   
-        printResults()};
+        printResults();
+
+        timerEl.setAttribute("style", "display: none");
+    quizTemplate.setAttribute("style", "display: none")}
     }, 1000);
 
     // when time starts, quiz pops up
@@ -89,4 +92,5 @@ var submitButton = document.getElementById('submit');
 
 // when timer == -1, (ends) print total score on page. 
 
-startBtn.addEventListener("click", startQuiz());
+startBtn.addEventListener("click", startTimer);
+startBtn.addEventListener("click", startQuiz);

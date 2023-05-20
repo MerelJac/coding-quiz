@@ -18,6 +18,8 @@ header {
 
 #quiz {
     display: none;
+}
+.quiz {
     align-items: center;
     flex-direction: column;
 }
