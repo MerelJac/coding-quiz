@@ -36,7 +36,7 @@ function startTimer() {
         printResults();
 
         timerEl.setAttribute("style", "display: none");
-    quizTemplate.setAttribute("style", "display: none")}
+        quizTemplate.setAttribute("style", "display: none")}
     }, 1000);
 
     // when time starts, quiz pops up
