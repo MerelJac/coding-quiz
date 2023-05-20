@@ -5,8 +5,14 @@ header {
     margin: 40px;
     padding: 20px;
 }
+#question {
+    font-size: larger;
+}
 #startBtn {
-    padding: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     background-color: white;
 }
 #timer {
@@ -14,6 +20,7 @@ header {
 
 #answerContainer {
     display: flex;
+    flex-wrap: wrap;
 }
 
 #quiz {
@@ -28,4 +35,28 @@ header {
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+
+#answerContainer button {
+    padding: 20px;
+    margin: 20px;
+}
+
+
+/* not working  */
+
+@media screen and (max-width: 768px) {
+    #startBtn {
+        font-size: larger;
+    }
+    
+}
+/* edit this media query so on a phone, the boxes are side by side */
+@media screen and(max-width: 400px) {
+    #answerContainer button {
+        /* each button takes up 50% of container */
+        flex-basis: 50%;
+        /* include padding and border in the width calculation */
+        box-sizing: border-box;
+    }
 }
