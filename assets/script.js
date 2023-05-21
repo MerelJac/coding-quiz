@@ -22,21 +22,24 @@ var questions = [
     possibleAnswer1: 'Yes',
     possibleAnswer2: 'Sometimes',
     possibleAnswer3: 'It is hard',
-    possibleAnswer4: 'No'
+    possibleAnswer4: 'No',
+    correctAnswer: 'Yes'
     },
     {
     question: 'What is your favorite food?',
     possibleAnswer1: 'Pizza',
     possibleAnswer2: 'French Fries',
     possibleAnswer3: 'Soup',
-    possibleAnswer4: 'Meat'
+    possibleAnswer4: 'Meat',
+    correctAnswer: 'Meat'
     },
     {
     question: 'Do you eat your favorite snacks while coding?',
     possibleAnswer1: 'Yes',
     possibleAnswer2: 'Sometimes',
     possibleAnswer3: 'I know I shouldnt',
-    possibleAnswer4: 'No'
+    possibleAnswer4: 'No',
+    correctAnswer: 'No'
     }
 ]
 
@@ -73,16 +76,21 @@ function printResults() {
     // create a new div in HTML
     var resultsDiv = document.createElement("div");
     // tell the new div what to say
-    resultsDiv.innerText = "Here are your results:";
+    resultsDiv.innerText = "Results";
     // append the new div to the body of the HTML file
     document.body.children[2].appendChild(resultsDiv);
-    
     var resultsDiv = document.createElement("div");
     // tell the new div what to say
-    resultsDiv.innerText = "Your Score:";
+    resultsDiv.innerText = "Your Score: " + yourScore;
     // append the new div to the body of the HTML file
     document.body.children[2].appendChild(resultsDiv);
-    
+    var initalsDiv = document.createElement("input");
+    initalsDiv.setAttribute("placeholder", "Input Initals");
+    document.body.children[2].appendChild(initalsDiv);
+    initalsDiv.addEventListener("change", function storeInitals() {
+        localStorage.setItem("initals", initalsDiv.value);
+    })
+
 
     // document.querySelector(".printResults").innerHTML += `<li>${"Your Score"}</li><li>${"Great Job"}</li><li>${"WooHoo"}</li>`;
 
@@ -114,6 +122,21 @@ function showNextQuestion() {
     }
 };
 
+var yourScore = 0
+function checkAnswer() {
+    if  (questions.possibleAnswer1 === questions.correctAnswer) {yourScore += 1}
+    else if (questions.possibleAnswer2 === questions.correctAnswer) {yourScore += 1}
+    else if (questions.possibleAnswer3 === questions.correctAnswer) {yourScore += 1}
+    else if (questions.possibleAnswer4 === questions.correctAnswer) {yourScore += 1}
+    else if (questions.possibleAnswer1 !== questions.correctAnswer) {secondsLeft -= 5}
+    else if (questions.possibleAnswer2 !== questions.correctAnswer) {secondsLeft -= 5}
+    else if (questions.possibleAnswer3 !== questions.correctAnswer) {secondsLeft -= 5}
+    else if (questions.possibleAnswer4 !== questions.correctAnswer) {secondsLeft -= 5}
+
+    console.log(yourScore);
+};
+
+localStorage.setItem("score", yourScore);
 
 // make for loop for quiz questions/possible answers
 // chaange i < to be based off the timer
@@ -143,4 +166,4 @@ function showNextQuestion() {
 
 startBtn.addEventListener("click", startTimer);
 startBtn.addEventListener("click", startQuiz);
-answerBtn.addEventListener("click", showNextQuestion);
+answerBtn.addEventListener("click", checkAnswer);
