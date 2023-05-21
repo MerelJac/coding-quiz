@@ -42,6 +42,9 @@ header {
     margin: 20px;
 }
 
+#restartBtn {
+    display: none;
+}
 
 /* not working  */
 

@@ -5,7 +5,12 @@ var timerEl = document.querySelector("#timer");
 // make varibale for printResults section in HTML
 var printSection = document.querySelector(".printResults");
 var quizTemplate = document.querySelector("#quiz");
-var answerBtn = document.querySelector('#answerOption1');
+// is this why only one button works?
+var answerBtn1 = document.querySelector('#answerOption1');
+var answerBtn2 = document.querySelector('#answerOption2');
+var answerBtn3 = document.querySelector('#answerOption3');
+var answerBtn4 = document.querySelector('#answerOption4');
+var restartBtn = document.querySelector('#restartBtn');
 
 // the following lines will print the question and possible answers in the HTML button containers
 var quizContainer = document.getElementById('question');
@@ -13,7 +18,6 @@ var answerContainer1 = document.getElementById('answerOption1');
 var answerContainer2 = document.getElementById('answerOption2');
 var answerContainer3 = document.getElementById('answerOption3');
 var answerContainer4 = document.getElementById('answerOption4');
-var resultsContainer = document.getElementById('results');
 var submitButton = document.getElementById('submit');
 
 var questions = [
@@ -49,6 +53,7 @@ var secondsLeft = 5
 function startQuiz() {
     var quiz = document.querySelector("#quiz");
     quiz.style.display = "flex";
+    restartBtn.setAttribute("style", "display: flex")
 };
 
 function startTimer() {
@@ -68,36 +73,25 @@ function startTimer() {
     // when time starts, quiz pops up
 };
 
-
 // having trouble with print results function // creating HTML lements 
 function printResults() {
-    // write new verbage 
-    timerEl.textContent = "Time's Out!";
     // create a new div in HTML
     var resultsDiv = document.createElement("div");
     // tell the new div what to say
     resultsDiv.innerText = "Results";
     // append the new div to the body of the HTML file
-    document.body.children[2].appendChild(resultsDiv);
+    document.body.children[3].appendChild(resultsDiv);
     var resultsDiv = document.createElement("div");
     // tell the new div what to say
     resultsDiv.innerText = "Your Score: " + yourScore;
     // append the new div to the body of the HTML file
-    document.body.children[2].appendChild(resultsDiv);
+    document.body.children[3].appendChild(resultsDiv);
     var initalsDiv = document.createElement("input");
     initalsDiv.setAttribute("placeholder", "Input Initals");
-    document.body.children[2].appendChild(initalsDiv);
+    document.body.children[3].appendChild(initalsDiv);
     initalsDiv.addEventListener("change", function storeInitals() {
         localStorage.setItem("initals", initalsDiv.value);
     })
-
-
-    // document.querySelector(".printResults").innerHTML += `<li>${"Your Score"}</li><li>${"Great Job"}</li><li>${"WooHoo"}</li>`;
-
-    // //give it content
-    // resultsPage = "results";
-    // // prints to page
-    // document.body.appendChild(resultsPage);
 
 };
 
@@ -124,19 +118,27 @@ function showNextQuestion() {
 
 var yourScore = 0
 function checkAnswer() {
-    if  (questions.possibleAnswer1 === questions.correctAnswer) {yourScore += 1}
-    else if (questions.possibleAnswer2 === questions.correctAnswer) {yourScore += 1}
-    else if (questions.possibleAnswer3 === questions.correctAnswer) {yourScore += 1}
-    else if (questions.possibleAnswer4 === questions.correctAnswer) {yourScore += 1}
-    else if (questions.possibleAnswer1 !== questions.correctAnswer) {secondsLeft -= 5}
-    else if (questions.possibleAnswer2 !== questions.correctAnswer) {secondsLeft -= 5}
-    else if (questions.possibleAnswer3 !== questions.correctAnswer) {secondsLeft -= 5}
-    else if (questions.possibleAnswer4 !== questions.correctAnswer) {secondsLeft -= 5}
+    if  (questions[0].possibleAnswer1 === questions[0].correctAnswer) {yourScore += 1}
+    else if (questions[0].possibleAnswer2 === questions[0].correctAnswer) {yourScore += 1}
+    else if (questions[0].possibleAnswer3 === questions[0].correctAnswer) {yourScore += 1}
+    else if (questions[0].possibleAnswer4 === questions[0].correctAnswer) {yourScore += 1}
+    else if (questions[0].possibleAnswer1 !== questions[0].correctAnswer) {console.log("Time Deducted")}
+    else if (questions[0].possibleAnswer2 !== questions[0].correctAnswer) {console.log("Time Deducted")}
+    else if (questions[0].possibleAnswer3 !== questions[0].correctAnswer) {console.log("Time Deducted")}
+    else if (questions[0].possibleAnswer4 !== questions[0].correctAnswer) {console.log("Time Deducted")}
 
     console.log(yourScore);
 };
 
 localStorage.setItem("score", yourScore);
+var pastScore = document.createElement("div");
+pastScore.innerText = "Past Score: " + localStorage.getItem("score")
+
+// add local storage to page
+// if (localStorage.getItem("score" = value)) {
+//     var pastScore = document.createElement("div");
+//     pastScore.innerText = "Past Score: " + localStorage.getItem("score");
+// }
 
 // make for loop for quiz questions/possible answers
 // chaange i < to be based off the timer
@@ -149,21 +151,21 @@ localStorage.setItem("score", yourScore);
     
 // };
 
+function restartPage() {
+    yourScore = 0;
+    secondsLeft = 10;
+    startTimer();
+    console.log("Page Restarted");
+};
 
-// when the timer begins, the first question pops onto the screen
 
-// object arrays of questions/possible answers/ correct answer
-
-
-
-// when you click a possible answer output boolean. if answer == true print "correct" if answer == false "incorrect"
-
-// if answer == false, subtract more time from the timer
 
 // localStorage adding total points
 
-// when timer == -1, (ends) print total score on page. 
-
 startBtn.addEventListener("click", startTimer);
 startBtn.addEventListener("click", startQuiz);
-answerBtn.addEventListener("click", checkAnswer);
+answerBtn1.addEventListener("click", checkAnswer);
+answerBtn2.addEventListener("click", checkAnswer);
+answerBtn3.addEventListener("click", checkAnswer);
+answerBtn4.addEventListener("click", checkAnswer);
+restartBtn.addEventListener("click", restartPage);
