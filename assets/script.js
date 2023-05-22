@@ -32,6 +32,8 @@ var questions = [
         quiz.style.display = "flex";
         startBtn.setAttribute("style", "display: none");
         for (var i = 0; i < questions.length; i++) {
+            // clears out previous buttons / must be at top
+            answerSection.innerHTML = "";
             var currentQuestion = questions[i];
             console.log(currentQuestion);
             console.log(currentQuestion.question);
@@ -43,15 +45,13 @@ var questions = [
                 answerButton.textContent = currentQuestion.options[o];
                 answerButton.addEventListener("click", scoreAnswer);
                 answerSection.appendChild(answerButton);
-                // clears out previous buttons
-                // answerSection.innerHTML = "";
             }
-        function scoreAnswer() {
-            if (answerButton.textContent === currentQuestion.answer) {console.log("You get a point")
-        } else {console.log("You lose time")}
-            };
         }};
 
+function scoreAnswer() {
+    if (answerButton.textContent === currentQuestion.answer) {console.log("You get a point")
+    } else {console.log("You lose time")};
+    };
 // set duration of timer
 var secondsLeft = 5;
 // begin with a score of 0
@@ -111,48 +111,13 @@ function printResults() {
     startBtn.setAttribute("style", "display: none");
 };
 
-document.addEventListener('DOMContentLoaded', function() {
-    quizContainer.innerText = questions[0].question;
-    answerContainer1.innerText = questions[0].possibleAnswer1;
-    answerContainer2.innerText = questions[0].possibleAnswer2;
-    answerContainer3.innerText = questions[0].possibleAnswer3;
-    answerContainer4.innerText = questions[0].possibleAnswer4;
-})
-
-// function showNextQuestion() {
-//     for (var i = 1; i < 2; i++) {
-//         document.addEventListener('DOMContentLoaded', function() {
-//             quizContainer.innerText = questions[i].question;
-//             answerContainer1.innerText = questions[i].possibleAnswer1;
-//             answerContainer2.innerText = questions[i].possibleAnswer2;
-//             answerContainer3.innerText = questions[i].possibleAnswer3;
-//             answerContainer4.innerText = questions[i].possibleAnswer4;
-//         })
-//     }
-// };
-
-
-// function checkAnswer() {
-//     if  (answerContainer1.innerText === questions[0].correctAnswer) {yourScore += 1}
-//     else if (answerContainer2.innerText === questions[0].correctAnswer) {yourScore += 1}
-//     else if (answerContainer3.innerText === questions[0].correctAnswer) {yourScore += 1}
-//     else if (answerContainer4.innerText === questions[0].correctAnswer) {yourScore += 1}
-//     else if (console.log("Time Deducted"))
-
-//     console.log(yourScore);
-// };
-// function checkAnswer() {
-//     if  (questions[0].possibleAnswer1 === questions[0].correctAnswer) {yourScore += 1}
-//     else if (questions[0].possibleAnswer2 === questions[0].correctAnswer) {yourScore += 1}
-//     else if (questions[0].possibleAnswer3 === questions[0].correctAnswer) {yourScore += 1}
-//     else if (questions[0].possibleAnswer4 === questions[0].correctAnswer) {yourScore += 1}
-//     else if (questions[0].possibleAnswer1 !== questions[0].correctAnswer) {console.log("Time Deducted")}
-//     else if (questions[0].possibleAnswer2 !== questions[0].correctAnswer) {console.log("Time Deducted")}
-//     else if (questions[0].possibleAnswer3 !== questions[0].correctAnswer) {console.log("Time Deducted")}
-//     else if (questions[0].possibleAnswer4 !== questions[0].correctAnswer) {console.log("Time Deducted")}
-
-//     console.log(yourScore);
-// };
+// document.addEventListener('DOMContentLoaded', function() {
+//     quizContainer.innerText = questions[0].question;
+//     answerContainer1.innerText = questions[0].possibleAnswer1;
+//     answerContainer2.innerText = questions[0].possibleAnswer2;
+//     answerContainer3.innerText = questions[0].possibleAnswer3;
+//     answerContainer4.innerText = questions[0].possibleAnswer4;
+// });
 
 localStorage.setItem("score", yourScore);
 var pastScore = document.createElement("div");
