@@ -39,23 +39,52 @@ var questions = [
             console.log(currentQuestion.question);
             questionSection.textContent = currentQuestion.question;
             console.log(currentQuestion.options);
-            for (var o = 0; o < currentQuestion.options.length; o++) {
-                console.log(currentQuestion.options[o])
-                var answerButton = document.createElement("button");
-                answerButton.textContent = currentQuestion.options[o];
-                answerSection.appendChild(answerButton);
-                answerButton.addEventListener("click", scoreAnswer);
-            }
-            console.log(answerButton);
-            function scoreAnswer() {
-                if (answerButton.textContent === currentQuestion.answer) {console.log("You get a point");
-                scoreAnswer++;
-                } else {console.log("You lose time")};
+            var answerButton1 = document.createElement("button");
+            answerButton1.textContent = currentQuestion.options[0];
+            answerSection.appendChild(answerButton1);
+            answerButton1.addEventListener("click", scoreAnswer1);
+            var answerButton2 = document.createElement("button");
+            answerButton2.textContent = currentQuestion.options[1];
+            answerSection.appendChild(answerButton2);
+            answerButton2.addEventListener("click", scoreAnswer2);
+            var answerButton3 = document.createElement("button");            answerButton3.textContent = currentQuestion.options[2];
+            answerSection.appendChild(answerButton3);
+            answerButton3.addEventListener("click", scoreAnswer3);
+            var answerButton4 = document.createElement("button");            answerButton4.textContent = currentQuestion.options[3];
+            answerSection.appendChild(answerButton4);
+            answerButton4.addEventListener("click", scoreAnswer4);
+            // for (var o = 0; o < currentQuestion.options.length; o++) {
+            //     console.log(currentQuestion.options[o])
+            //     var answerButton = document.createElement("button");
+            //     answerButton.textContent = currentQuestion.options[o];
+            //     answerSection.appendChild(answerButton);
+            //     answerButton.addEventListener("click", scoreAnswer);
+            // }
+            console.log(currentQuestion.answer);
+            function scoreAnswer1() {
+                if (answerButton1.textContent === currentQuestion.answer) {console.log("You get a point");
+                yourScore++;
+                } else {console.log("you lost time")}
+                };
+            function scoreAnswer2() {
+                if (answerButton2.textContent === currentQuestion.answer) {console.log("You get a point");
+                yourScore++;
+                 } else {console.log("you lost time")}
+                };
+            function scoreAnswer3() {
+                if (answerButton3.textContent === currentQuestion.answer) {console.log("You get a point");
+                yourScore++;
+                 } else {console.log("you lost time")}
+                };
+            function scoreAnswer4() {
+                if (answerButton4.textContent === currentQuestion.answer) {console.log("You get a point");
+                yourScore++;
+                } else {console.log("you lost time")}
                 };
         }};
 
 // set duration of timer
-var secondsLeft = 5;
+var secondsLeft = 60;
 // begin with a score of 0
 var yourScore = 0
 // when you click the start button, the timer begins -- done
