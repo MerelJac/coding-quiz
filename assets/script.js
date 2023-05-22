@@ -43,15 +43,17 @@ var questions = [
                 console.log(currentQuestion.options[o])
                 var answerButton = document.createElement("button");
                 answerButton.textContent = currentQuestion.options[o];
-                answerButton.addEventListener("click", scoreAnswer);
                 answerSection.appendChild(answerButton);
+                answerButton.addEventListener("click", scoreAnswer);
             }
+            console.log(answerButton);
+            function scoreAnswer() {
+                if (answerButton.textContent === currentQuestion.answer) {console.log("You get a point");
+                scoreAnswer++;
+                } else {console.log("You lose time")};
+                };
         }};
 
-function scoreAnswer() {
-    if (answerButton.textContent === currentQuestion.answer) {console.log("You get a point")
-    } else {console.log("You lose time")};
-    };
 // set duration of timer
 var secondsLeft = 5;
 // begin with a score of 0
