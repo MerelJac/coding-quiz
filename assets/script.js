@@ -6,99 +6,92 @@ var timerEl = document.querySelector("#timer");
 var resutsSection = document.querySelector("#results");
 var printSection = document.querySelector(".printResults");
 var quizTemplate = document.querySelector("#quiz");
-// is this why only one button works?
-var answerBtn1 = document.querySelector('#answerOption1');
-var answerBtn2 = document.querySelector('#answerOption2');
-var answerBtn3 = document.querySelector('#answerOption3');
-var answerBtn4 = document.querySelector('#answerOption4');
 var restartBtn = document.querySelector('#restartBtn');
+var questionSection = document.querySelector('#question');
+var answerSection = document.querySelector('#answerSection');
 
-// the following lines will print the question and possible answers in the HTML button containers
-var quizContainer = document.getElementById('question');
-var answerContainer1 = document.getElementById('answerOption1');
-var answerContainer2 = document.getElementById('answerOption2');
-var answerContainer3 = document.getElementById('answerOption3');
-var answerContainer4 = document.getElementById('answerOption4');
 
 var questions = [
     {
-    question: 'Do you like coding?',
-    possibleAnswer1: 'Yes',
-    possibleAnswer2: 'Sometimes',
-    possibleAnswer3: 'It is hard',
-    possibleAnswer4: 'No',
-    correctAnswer: 'Yes'
+      question: "What is the capital of France?",
+      options: ["Paris", "London", "Berlin", "Rome"],
+      answer: "Paris"
     },
     {
-    question: 'What is your favorite food?',
-    possibleAnswer1: 'Pizza',
-    possibleAnswer2: 'French Fries',
-    possibleAnswer3: 'Soup',
-    possibleAnswer4: 'Meat',
-    correctAnswer: 'Meat'
+      question: "Who painted the Mona Lisa?",
+      options: ["Leonardo da Vinci", "Pablo Picasso", "Vincent van Gogh", "Michelangelo"],
+      answer: "Leonardo da Vinci"
     },
     {
-    question: 'Do you eat your favorite snacks while coding?',
-    possibleAnswer1: 'Yes',
-    possibleAnswer2: 'Sometimes',
-    possibleAnswer3: 'I know I shouldnt',
-    possibleAnswer4: 'No',
-    correctAnswer: 'No'
+      question: "What is the largest planet in our solar system?",
+      options: ["Mercury", "Mars", "Jupiter", "Saturn"],
+      answer: "Jupiter"
     }
-]
+  ];
 
-var theQuestions = [
-    {
-        question: "Do you like to code?",
-        answers: {
-            a: 'Yes',
-            b: 'No',
-            c: 'Sometimes'
-        },
-        correctAnswer: 'a'
-    },
-    {
-        question: "Do you eat while you code?",
-        answers: {
-            a: 'Yes',
-            b: 'No',
-            c: 'Sometimes'
-        },
-        correctAnswer: 'c'}
-]
+  function generateQuiz (questions) {
+    quiz.style.display = "flex";
+    startBtn.setAttribute("style", "display: none");
+    for (var i = 0; i < questions.length; i++) {
+        var currentQuestion = questions[i];
+        // inserts currentQuestion into HTML
+        questionSection.textContent = JSON.stringify(currentQuestion.question);
+        // empties previous answer section
+        answerSection.innerHTML = "";
+        //create random generater for answer buttons
+        for (var a = 0; a < currentQuestion.options.length; i++) {
+            var answerOption = currentQuestion.options[m];
+            var answerButton = document.createElement("button");
+            // insert the answers in the div on the HTML as buttons
+            answerButton.textContent = answerOption;
+            answerSection.appendChild(answerButton);
+        }}
+        // on click, decide if correct or incorrect
+        answerSection.addEventListener("click", function(event) {
+            // what is event?
+            var selectedAnswer = event.target.textContent;
+            var correctAnswer = currentQuestion.answer;
 
-startBtn.addEventListener("click", generateQuiz);
-
-function generateQuiz() {
-    function showQuestions(theQuestions, quizContainer) {
-        var output = [];
-        var answers;
-
-        for (var i = 0; i<theQuestions.length; i++){
-            answers = [];
-            for(letter in theQuestions[i].answers){
-                answers.push(
-                    '<label>' + '<input type="button" name="question'+i+'" value="'+letter+'">' + letter + ': ' + theQuestions.answers[letter] + '</label>'
-                );
+            if (selectedAnswer === correctAnswer) {
+            // if correct, add one point to score
+                score++;
+            // if incorrect, deduct time
+            } else {
+                secondsLeft -= 5;
             }
-            output.push(
-                '<div class="question">' + theQuestions[i].question + '</div>' + '<div class="answers">' + answers.join('') + '</div>'
-            );
-        }
-    }
-}
+    
+        // after click, generate new question/answer combination
+        if (i === secondsLeft - 1) {
+            console.log("Out of time");
+        } else {
+            generateQuiz(questions.slice(i+1));
+        }  
+    });
+};
 
+//         for (var i = 0; i<theQuestions.length; i++){
+//             answers = [];
+//             for(letter in theQuestions[i].answers){
+//                 answers.push(
+//                     '<label>' + '<input type="button" name="question'+i+'" value="'+letter+'">' + letter + ': ' + theQuestions.answers[letter] + '</label>'
+//                 );
+//             }
+//             output.push(
+//                 '<div class="question">' + theQuestions[i].question + '</div>' + '<div class="answers">' + answers.join('') + '</div>'
+//             );
+//         }
+//     }
+// }
 
-
-
-
-// set duration of timer -- done
-var secondsLeft = 5;
+// set duration of timer
+var secondsLeft = 60;
+// begin with a score of 0
+var yourScore = 0
 // when you click the start button, the timer begins -- done
 function startQuiz() {
     var quiz = document.querySelector("#quiz");
     quiz.style.display = "flex";
-    startBtn.setAttribute("style", "display: none");
+    startBtn.setAttribute("style", "display: none")
 };
 
 function startTimer() {
@@ -115,10 +108,11 @@ function startTimer() {
         quizTemplate.setAttribute("style", "display: none")}
     }, 1000);
 
+    resutsSection.style.display = "flex";
+
 
     // when time starts, quiz pops up
 };
-
 
 function printResults() {
     restartBtn.setAttribute("style", "display: flex");
@@ -148,7 +142,6 @@ function printResults() {
     startBtn.setAttribute("style", "display: none");
 };
 
-
 document.addEventListener('DOMContentLoaded', function() {
     quizContainer.innerText = questions[0].question;
     answerContainer1.innerText = questions[0].possibleAnswer1;
@@ -157,28 +150,28 @@ document.addEventListener('DOMContentLoaded', function() {
     answerContainer4.innerText = questions[0].possibleAnswer4;
 })
 
-function showNextQuestion() {
-    for (var i = 1; i < 2; i++) {
-        document.addEventListener('DOMContentLoaded', function() {
-            quizContainer.innerText = questions[i].question;
-            answerContainer1.innerText = questions[i].possibleAnswer1;
-            answerContainer2.innerText = questions[i].possibleAnswer2;
-            answerContainer3.innerText = questions[i].possibleAnswer3;
-            answerContainer4.innerText = questions[i].possibleAnswer4;
-        })
-    }
-};
+// function showNextQuestion() {
+//     for (var i = 1; i < 2; i++) {
+//         document.addEventListener('DOMContentLoaded', function() {
+//             quizContainer.innerText = questions[i].question;
+//             answerContainer1.innerText = questions[i].possibleAnswer1;
+//             answerContainer2.innerText = questions[i].possibleAnswer2;
+//             answerContainer3.innerText = questions[i].possibleAnswer3;
+//             answerContainer4.innerText = questions[i].possibleAnswer4;
+//         })
+//     }
+// };
 
-var yourScore = 0
-function checkAnswer() {
-    if  (answerContainer1.innerText === questions[0].correctAnswer) {yourScore += 1}
-    else if (answerContainer2.innerText === questions[0].correctAnswer) {yourScore += 1}
-    else if (answerContainer3.innerText === questions[0].correctAnswer) {yourScore += 1}
-    else if (answerContainer4.innerText === questions[0].correctAnswer) {yourScore += 1}
-    else if (console.log("Time Deducted"))
 
-    console.log(yourScore);
-};
+// function checkAnswer() {
+//     if  (answerContainer1.innerText === questions[0].correctAnswer) {yourScore += 1}
+//     else if (answerContainer2.innerText === questions[0].correctAnswer) {yourScore += 1}
+//     else if (answerContainer3.innerText === questions[0].correctAnswer) {yourScore += 1}
+//     else if (answerContainer4.innerText === questions[0].correctAnswer) {yourScore += 1}
+//     else if (console.log("Time Deducted"))
+
+//     console.log(yourScore);
+// };
 // function checkAnswer() {
 //     if  (questions[0].possibleAnswer1 === questions[0].correctAnswer) {yourScore += 1}
 //     else if (questions[0].possibleAnswer2 === questions[0].correctAnswer) {yourScore += 1}
@@ -230,9 +223,6 @@ function restartPage() {
 // localStorage adding total points
 
 startBtn.addEventListener("click", startTimer);
+startBtn.addEventListener("click", generateQuiz);
 startBtn.addEventListener("click", startQuiz);
-// answerBtn1.addEventListener("click", checkAnswer);
-// answerBtn2.addEventListener("click", checkAnswer);
-// answerBtn3.addEventListener("click", checkAnswer);
-// answerBtn4.addEventListener("click", checkAnswer);
 restartBtn.addEventListener("click", restartPage);
