@@ -10,7 +10,6 @@ var restartBtn = document.querySelector('#restartBtn');
 var questionSection = document.querySelector('#question');
 var answerSection = document.querySelector('#answerSection');
 
-
 var questions = [
     {
       question: "What is the capital of France?",
@@ -28,31 +27,46 @@ var questions = [
       answer: "Jupiter"
     }
   ];
-    function generateQuiz() {
+
+  function generateQuiz() {
         quiz.style.display = "flex";
         startBtn.setAttribute("style", "display: none");
         for (var i = 0; i < questions.length; i++) {
             // clears out previous buttons / must be at top
             answerSection.innerHTML = "";
+            // finds current question in the array
             var currentQuestion = questions[i];
+            //check progress
             console.log(currentQuestion);
             console.log(currentQuestion.question);
+            // writes question onto the screen
             questionSection.textContent = currentQuestion.question;
+            // check work
             console.log(currentQuestion.options);
+            // create answerButton 1
             var answerButton1 = document.createElement("button");
+            // text content of button is that of array[0]
             answerButton1.textContent = currentQuestion.options[0];
+            //append to after the answerSection
             answerSection.appendChild(answerButton1);
+            // add click function to score answer
             answerButton1.addEventListener("click", scoreAnswer1);
+            // repeat 
             var answerButton2 = document.createElement("button");
             answerButton2.textContent = currentQuestion.options[1];
             answerSection.appendChild(answerButton2);
             answerButton2.addEventListener("click", scoreAnswer2);
-            var answerButton3 = document.createElement("button");            answerButton3.textContent = currentQuestion.options[2];
+            // repeat
+            var answerButton3 = document.createElement("button");            
+            answerButton3.textContent = currentQuestion.options[2];
             answerSection.appendChild(answerButton3);
             answerButton3.addEventListener("click", scoreAnswer3);
-            var answerButton4 = document.createElement("button");            answerButton4.textContent = currentQuestion.options[3];
+            // repeat
+            var answerButton4 = document.createElement("button");            
+            answerButton4.textContent = currentQuestion.options[3];
             answerSection.appendChild(answerButton4);
             answerButton4.addEventListener("click", scoreAnswer4);
+            // check work 
             console.log(currentQuestion.answer);
             function scoreAnswer1() {
                 if (answerButton1.textContent === currentQuestion.answer) {console.log("You get a point");
@@ -78,6 +92,7 @@ var questions = [
                 generateQuiz(i++);
                 } else {console.log("you lost time"); generateQuiz(i++);}
                 };
+            console.log(yourScore);
         }};
 
 // set duration of timer
