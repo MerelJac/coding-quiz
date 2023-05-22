@@ -44,6 +44,8 @@ header {
 
 #restartBtn {
     display: none;
+    align-items: center;
+    justify-content: center;
 }
 
 /* not working  */
