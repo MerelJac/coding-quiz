@@ -28,63 +28,32 @@ var questions = [
       answer: "Jupiter"
     }
   ];
-
-  function generateQuiz (questions) {
-    quiz.style.display = "flex";
-    startBtn.setAttribute("style", "display: none");
-    for (var i = 0; i < questions.length; i++) {
-        var currentQuestion = questions[i];
-        // inserts currentQuestion into HTML
-        questionSection.textContent = JSON.stringify(currentQuestion.question);
-        // empties previous answer section
-        answerSection.innerHTML = "";
-        //create random generater for answer buttons
-        for (var a = 0; a < currentQuestion.options.length; i++) {
-            var answerOption = currentQuestion.options[m];
-            var answerButton = document.createElement("button");
-            // insert the answers in the div on the HTML as buttons
-            answerButton.textContent = answerOption;
-            answerSection.appendChild(answerButton);
-        }}
-        // on click, decide if correct or incorrect
-        answerSection.addEventListener("click", function(event) {
-            // what is event?
-            var selectedAnswer = event.target.textContent;
-            var correctAnswer = currentQuestion.answer;
-
-            if (selectedAnswer === correctAnswer) {
-            // if correct, add one point to score
-                score++;
-            // if incorrect, deduct time
-            } else {
-                secondsLeft -= 5;
+    function generateQuiz() {
+        quiz.style.display = "flex";
+        startBtn.setAttribute("style", "display: none");
+        for (var i = 0; i < questions.length; i++) {
+            var currentQuestion = questions[i];
+            console.log(currentQuestion);
+            console.log(currentQuestion.question);
+            questionSection.textContent = currentQuestion.question;
+            console.log(currentQuestion.options);
+            for (var o = 0; o < currentQuestion.options.length; o++) {
+                console.log(currentQuestion.options[o])
+                var answerButton = document.createElement("button");
+                answerButton.textContent = currentQuestion.options[o];
+                answerButton.addEventListener("click", scoreAnswer);
+                answerSection.appendChild(answerButton);
+                // clears out previous buttons
+                // answerSection.innerHTML = "";
             }
-    
-        // after click, generate new question/answer combination
-        if (i === secondsLeft - 1) {
-            console.log("Out of time");
-        } else {
-            generateQuiz(questions.slice(i+1));
-        }  
-    });
-};
-
-//         for (var i = 0; i<theQuestions.length; i++){
-//             answers = [];
-//             for(letter in theQuestions[i].answers){
-//                 answers.push(
-//                     '<label>' + '<input type="button" name="question'+i+'" value="'+letter+'">' + letter + ': ' + theQuestions.answers[letter] + '</label>'
-//                 );
-//             }
-//             output.push(
-//                 '<div class="question">' + theQuestions[i].question + '</div>' + '<div class="answers">' + answers.join('') + '</div>'
-//             );
-//         }
-//     }
-// }
+        function scoreAnswer() {
+            if (answerButton.textContent === currentQuestion.answer) {console.log("You get a point")
+        } else {console.log("You lose time")}
+            };
+        }};
 
 // set duration of timer
-var secondsLeft = 60;
+var secondsLeft = 5;
 // begin with a score of 0
 var yourScore = 0
 // when you click the start button, the timer begins -- done
