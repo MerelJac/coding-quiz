@@ -53,33 +53,30 @@ var questions = [
             var answerButton4 = document.createElement("button");            answerButton4.textContent = currentQuestion.options[3];
             answerSection.appendChild(answerButton4);
             answerButton4.addEventListener("click", scoreAnswer4);
-            // for (var o = 0; o < currentQuestion.options.length; o++) {
-            //     console.log(currentQuestion.options[o])
-            //     var answerButton = document.createElement("button");
-            //     answerButton.textContent = currentQuestion.options[o];
-            //     answerSection.appendChild(answerButton);
-            //     answerButton.addEventListener("click", scoreAnswer);
-            // }
             console.log(currentQuestion.answer);
             function scoreAnswer1() {
                 if (answerButton1.textContent === currentQuestion.answer) {console.log("You get a point");
                 yourScore++;
-                } else {console.log("you lost time")}
+                generateQuiz(i++);
+                } else {console.log("you lost time"); generateQuiz(i++)}
                 };
             function scoreAnswer2() {
                 if (answerButton2.textContent === currentQuestion.answer) {console.log("You get a point");
                 yourScore++;
-                 } else {console.log("you lost time")}
+                generateQuiz(i++);
+                 } else {console.log("you lost time"); generateQuiz(i++);}
                 };
             function scoreAnswer3() {
                 if (answerButton3.textContent === currentQuestion.answer) {console.log("You get a point");
                 yourScore++;
-                 } else {console.log("you lost time")}
+                generateQuiz(i++);
+                 } else {console.log("you lost time"); generateQuiz(i++);}
                 };
             function scoreAnswer4() {
                 if (answerButton4.textContent === currentQuestion.answer) {console.log("You get a point");
                 yourScore++;
-                } else {console.log("you lost time")}
+                generateQuiz(i++);
+                } else {console.log("you lost time"); generateQuiz(i++);}
                 };
         }};
 
