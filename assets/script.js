@@ -16,6 +16,10 @@ var questions = [
         options: ["var array = [];", "var array = {};", "var array = ();", "var array = '';"],
         answer: "var array = [];"
       },
+        {question: "What is the correct way to declare an empty array in JavaScript?",
+        options: ["var array = [];", "var array = {};", "var array = ();", "var array = '';"],
+        answer: "var array = [];"
+    },
       {
         question: "How do you access the first element of an array?",
         options: ["array[0]", "array.first", "array.firstElement", "array.first()"],
@@ -32,9 +36,14 @@ var questions = [
         answer: "array.pop()"
       },
       {
-        question: "How do you find the number of elements in an array?",
-        options: ["array.size()", "array.count()", "array.length()", "array.size"],
-        answer: "array.length()"
+        question: "What element do you use to link JavaScript to the HTML file?",
+        options: ["<script>", "<JS>", "<meta>", "<file>"],
+        answer: "<script>"
+      },
+      {
+        question: "Correct syntax to getElementByID?",
+        options: ["('.id')", "('#id')", "('id')", "(id)" ],
+        answer: "('#id')"
       }
   ];
 
@@ -114,7 +123,7 @@ function loseTime (time) {
 }
 
 // set duration of timer
-var secondsLeft = 5;
+var secondsLeft = 60;
 // begin with a score of 0
 var yourScore = 0
 // when you click the start button, the timer begins -- done
@@ -147,7 +156,7 @@ function startTimer() {
 
 function printResults() {
     restartBtn.setAttribute("style", "display: flex");
-    var printSection = document.createElement("p");
+    var printSection = document.createElement("h1");
     // tell the new div what to say
     printSection.innerText = "Results";        
     // append the new div to the body of the HTML file
@@ -155,6 +164,11 @@ function printResults() {
     var printSection = document.createElement("p");        
     // tell the new div what to say
     printSection.innerText = "Your Score: " + yourScore;
+    // locals storeage for score
+    localStorage.setItem("score", yourScore);
+    var pastScore = document.createElement("div");
+    printSection.appendChild(pastScore);
+    pastScore.innerText = "Past Score: " + localStorage.getItem("score") + " " + localStorage.getItem('initals');
     // append the new div to the body of the HTML file 
     document.body.children[2].appendChild(printSection);
     var initalsDiv = document.createElement("input");
@@ -166,6 +180,7 @@ function printResults() {
     initalsDiv.addEventListener("change", function storeInitals() {
         localStorage.setItem("initals", initalsDiv.value);
         });
+    
 
     // show the restart button
     restartBtn.setAttribute("style", "display: flex");
@@ -173,10 +188,6 @@ function printResults() {
     startBtn.setAttribute("style", "display: none");
 };
 
-
-localStorage.setItem("score", yourScore);
-var pastScore = document.createElement("div");
-pastScore.innerText = "Past Score: " + localStorage.getItem("score")
 
 function restartPage() {
     yourScore = 0;
