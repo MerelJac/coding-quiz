@@ -111,13 +111,10 @@ var questions = [
 
 function loseTime (time) {
     secondsLeft -= time;
-    if (secondsLeft === 0) {clearInterval(timerInterval);
-        // when timer runs out, run this function   
-        printResults();}
 }
 
 // set duration of timer
-var secondsLeft = 10;
+var secondsLeft = 5;
 // begin with a score of 0
 var yourScore = 0
 // when you click the start button, the timer begins -- done
@@ -133,15 +130,16 @@ function startTimer() {
         secondsLeft--;
         timerEl.textContent = secondsLeft + " seconds remaining";
 
-        if (secondsLeft === 0) {clearInterval(timerInterval);
+        if (secondsLeft <= 0) {clearInterval(timerInterval);
         // when timer runs out, run this function   
         printResults();
 
         timerEl.setAttribute("style", "display: none");
-        quizTemplate.setAttribute("style", "display: none")}
+        quizTemplate.setAttribute("style", "display: none");
+        resutsSection.style.display = "flex";}
     }, 1000);
 
-    resutsSection.style.display = "flex";
+    
 
 
     // when time starts, quiz pops up
@@ -162,7 +160,7 @@ function printResults() {
     var initalsDiv = document.createElement("input");
     initalsDiv.setAttribute("placeholder", "Input Initals");        
     printSection.appendChild(initalsDiv);
-    printSection.setAttribute("style", "display: flex; flex-direction: column; text-align: center");
+    printSection.setAttribute("style", "display: flex; flex-direction: column; text-align: center; line-height: 3");
     initalsDiv.setAttribute("style", "text-align: center;");
     // if you type in the input box, it will save the initals in local storage
     initalsDiv.addEventListener("change", function storeInitals() {
@@ -182,7 +180,7 @@ pastScore.innerText = "Past Score: " + localStorage.getItem("score")
 
 function restartPage() {
     yourScore = 0;
-    secondsLeft = 3;
+    secondsLeft = 60;
     startTimer();
     timerEl.setAttribute("style", "display: flex; align-items: flex-end");
     startQuiz();

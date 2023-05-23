@@ -1,3 +1,6 @@
+* {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 header {
     display: flex;
     align-items: baseline;
@@ -7,6 +10,7 @@ header {
 }
 #question {
     font-size: larger;
+    padding: 10px;
 }
 #startBtn {
     padding-left: 20px;
@@ -14,7 +18,9 @@ header {
     padding-top: 10px;
     padding-bottom: 10px;
     background-color: white;
+    border-radius: 10px;
 }
+
 #timer {
 }
 
@@ -23,8 +29,23 @@ header {
     flex-wrap: wrap;
 }
 
+button {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: white;
+    border-radius: 10px;
+}
 #quiz {
     display: none;
+    justify-content: center;
+    align-items: center;
+    border-color: blue;
+    border: solid 5px black;
+    border-radius: 10px;
+
+    max-width: fit-content;
 }
 .quiz {
     align-items: center;
@@ -32,9 +53,13 @@ header {
 }
 
 #results {
-    display: flex;
+    display: none;
     align-items: center;
     flex-direction: column;
+    border: 10px solid black;
+    max-width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 #answerContainer button {
@@ -49,6 +74,7 @@ header {
     padding-top: 10px;
     padding-bottom: 10px;
     background-color: white;
+    border-radius: 10px;
 }
 
 /* not working  */
@@ -73,4 +99,9 @@ button {
     margin: 10px;
     padding: 10px;
     grid-template-columns: (2, auto);
+    background-color: white;
+}
+
+button:hover {
+    background-color:  #b47243;
 }
