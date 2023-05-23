@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
+
 * {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
+
 header {
     display: flex;
     align-items: baseline;
@@ -17,7 +20,8 @@ header {
     padding-right: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
-    background-color: white;
+    background-color: #DEB887;
+    box-shadow: 5px 5px #aa784d;
     border-radius: 10px;
 }
 
@@ -34,15 +38,14 @@ button {
     padding-right: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
-    background-color: white;
+    background-color: #DEB887;
     border-radius: 10px;
 }
 #quiz {
     display: none;
     justify-content: center;
     align-items: center;
-    border-color: blue;
-    border: solid 5px black;
+    border: solid 5px #DEB887;
     border-radius: 10px;
 
     max-width: fit-content;
@@ -56,7 +59,7 @@ button {
     display: none;
     align-items: center;
     flex-direction: column;
-    border: 10px solid black;
+    border: 10px solid #DEB887;
     max-width: fit-content;
     padding: 10px;
     border-radius: 10px;
@@ -73,8 +76,9 @@ button {
     padding-right: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
-    background-color: white;
     border-radius: 10px;
+    background-color: #DEB887;
+    box-shadow: 5px 5px #aa784d;
 }
 
 body {
@@ -82,6 +86,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #F5e5D6;
 }
 /* not working  */
 
