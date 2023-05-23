@@ -93,30 +93,25 @@ var questions = [
                 if (answerButton1.textContent === currentQuestion.answer) {console.log("You get a point");
                 yourScore++;
                 generateQuiz(shuffledQuestions++);
-                quizTemplate.setAttribute("style", "background-color: green");
-                } else {console.log("you lost time"); timerEl.setAttribute("style", "font-weight: bolder");loseTime(5); generateQuiz(shuffledQuestions++)}
+                } else {console.log("you lost time"); timerEl.setAttribute("style", "font-weight: bolder"); loseTime(5); generateQuiz(shuffledQuestions++)}
                 };
             function scoreAnswer2() {
                 if (answerButton2.textContent === currentQuestion.answer) {console.log("You get a point");
                 yourScore++;
-                quizTemplate.setAttribute("style", "background-color: green");
                 generateQuiz(shuffledQuestions++);
-                 } else {console.log("you lost time"); timerEl.setAttribute("style", "font-weight: bolder");loseTime(5); generateQuiz(shuffledQuestions++);}
+                 } else {console.log("you lost time"); timerEl.setAttribute("style", "font-weight: bolder"); loseTime(5); generateQuiz(shuffledQuestions++);}
                 };
             function scoreAnswer3() {
                 if (answerButton3.textContent === currentQuestion.answer) {console.log("You get a point");
                 yourScore++;
                 generateQuiz(shuffledQuestions++);
-                quizTemplate.setAttribute("style", "background-color: green");
-                 } else {console.log("you lost time"); timerEl.setAttribute("style", "font-weight: bolder");loseTime(5); generateQuiz(shuffledQuestions++);}
+                 } else {console.log("you lost time"); timerEl.setAttribute("style", "font-weight: bolder"); loseTime(5); generateQuiz(shuffledQuestions++);}
                 };
             function scoreAnswer4() {
                 if (answerButton4.textContent === currentQuestion.answer) {console.log("You get a point");
                 yourScore++;
-                quizTemplate.setAttribute("style", "background-color: green");
                 generateQuiz(shuffledQuestions++);
-                } else {console.log("you lost time"); loseTime(5); generateQuiz(shuffledQuestions++);
-                timerEl.setAttribute("style", "font-weight: bolder")}
+                } else {console.log("you lost time"); loseTime(5); generateQuiz(shuffledQuestions++); timerEl.setAttribute("style", "font-weight: bolder")};
                 };
             yourScore = yourScore;
             console.log(yourScore);
@@ -128,10 +123,11 @@ function loseTime (time) {
 }
 
 // set duration of timer
-var secondsLeft = 5;
+var secondsLeft = 60;
 // begin with a score of 0
 var yourScore = 0
 // when you click the start button, the timer begins -- done
+
 function startQuiz() {
     var quiz = document.querySelector("#quiz");
     quiz.style.display = "flex";
@@ -196,6 +192,7 @@ function restartPage() {
     startTimer();
     timerEl.setAttribute("style", "display: flex; align-items: flex-end");
     startQuiz();
+    generateQuiz();
     resutsSection.innerHTML = "";
     resutsSection.style.display = "none";
     console.log("Page Restarted");
