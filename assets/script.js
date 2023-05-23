@@ -12,26 +12,35 @@ var answerSection = document.querySelector('#answerSection');
 
 var questions = [
     {
-      question: "What is the capital of France?",
-      options: ["Paris", "London", "Berlin", "Rome"],
-      answer: "Paris"
-    },
-    {
-      question: "Who painted the Mona Lisa?",
-      options: ["Leonardo da Vinci", "Pablo Picasso", "Vincent van Gogh", "Michelangelo"],
-      answer: "Leonardo da Vinci"
-    },
-    {
-      question: "What is the largest planet in our solar system?",
-      options: ["Mercury", "Mars", "Jupiter", "Saturn"],
-      answer: "Jupiter"
-    }
+        question: "What is the correct way to declare an empty array in JavaScript?",
+        options: ["var array = [];", "var array = {};", "var array = ();", "var array = '';"],
+        answer: "var array = [];"
+      },
+      {
+        question: "How do you access the first element of an array?",
+        options: ["array[0]", "array.first", "array.firstElement", "array.first()"],
+        answer: "array[0]"
+      },
+      {
+        question: "What method adds one or more elements to the end of an array and returns the new length?",
+        options: ["array.push()", "array.pop()", "array.concat()", "array.join()"],
+        answer: "array.push()"
+      },
+      {
+        question: "Which method removes the last element from an array and returns that element?",
+        options: ["array.shift()", "array.splice()", "array.pop()", "array.slice()"],
+        answer: "array.pop()"
+      },
+      {
+        question: "How do you find the number of elements in an array?",
+        options: ["array.size()", "array.count()", "array.length()", "array.size"],
+        answer: "array.length()"
+      }
   ];
-
-
 
   function generateQuiz() {
     var shuffledQuestions = questions.sort(() => 0.5 - Math.random());
+    // how to prevent duplicates?
     console.log(shuffledQuestions);
         quiz.style.display = "flex";
         startBtn.setAttribute("style", "display: none");
@@ -75,34 +84,34 @@ var questions = [
                 if (answerButton1.textContent === currentQuestion.answer) {console.log("You get a point");
                 yourScore++;
                 generateQuiz(shuffledQuestions++);
-                } else {console.log("you lost time"); generateQuiz(shuffledQuestions++)}
+                } else {console.log("you lost time"); loseTime(5); generateQuiz(shuffledQuestions++)}
                 };
             function scoreAnswer2() {
                 if (answerButton2.textContent === currentQuestion.answer) {console.log("You get a point");
                 yourScore++;
                 generateQuiz(shuffledQuestions++);
-                 } else {console.log("you lost time"); generateQuiz(shuffledQuestions++);}
+                 } else {console.log("you lost time"); loseTime(5); generateQuiz(shuffledQuestions++);}
                 };
             function scoreAnswer3() {
                 if (answerButton3.textContent === currentQuestion.answer) {console.log("You get a point");
                 yourScore++;
                 generateQuiz(shuffledQuestions++);
-                 } else {console.log("you lost time"); generateQuiz(shuffledQuestions++);}
+                 } else {console.log("you lost time"); loseTime(5); generateQuiz(shuffledQuestions++);}
                 };
             function scoreAnswer4() {
                 if (answerButton4.textContent === currentQuestion.answer) {console.log("You get a point");
                 yourScore++;
                 generateQuiz(shuffledQuestions++);
-                } else {console.log("you lost time"); generateQuiz(shuffledQuestions++);}
+                } else {console.log("you lost time"); loseTime(5); generateQuiz(shuffledQuestions++);}
                 };
             yourScore = yourScore;
             console.log(yourScore);
         };
 
 
-function generateNextQuestion() {
-
-};
+function loseTime (time) {
+    secondsLeft -= time;
+}
 
 // set duration of timer
 var secondsLeft = 60;
@@ -163,34 +172,10 @@ function printResults() {
     startBtn.setAttribute("style", "display: none");
 };
 
-// document.addEventListener('DOMContentLoaded', function() {
-//     quizContainer.innerText = questions[0].question;
-//     answerContainer1.innerText = questions[0].possibleAnswer1;
-//     answerContainer2.innerText = questions[0].possibleAnswer2;
-//     answerContainer3.innerText = questions[0].possibleAnswer3;
-//     answerContainer4.innerText = questions[0].possibleAnswer4;
-// });
 
 localStorage.setItem("score", yourScore);
 var pastScore = document.createElement("div");
 pastScore.innerText = "Past Score: " + localStorage.getItem("score")
-
-// add local storage to page
-// if (localStorage.getItem("score" = value)) {
-//     var pastScore = document.createElement("div");
-//     pastScore.innerText = "Past Score: " + localStorage.getItem("score");
-// }
-
-// make for loop for quiz questions/possible answers
-// chaange i < to be based off the timer
-
-
-// for (var i = 0; i < questions.length; i++) {
-//     let index = Math.floor(Math.random() * quizPossileQuestions)
-//     let quizQuestion = quizPossileQuestions[index];
-//     quizContainer.textContent = quizQuestion;
-    
-// };
 
 function restartPage() {
     yourScore = 0;
