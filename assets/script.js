@@ -111,10 +111,13 @@ var questions = [
 
 function loseTime (time) {
     secondsLeft -= time;
+    if (secondsLeft === 0) {clearInterval(timerInterval);
+        // when timer runs out, run this function   
+        printResults();}
 }
 
 // set duration of timer
-var secondsLeft = 60;
+var secondsLeft = 10;
 // begin with a score of 0
 var yourScore = 0
 // when you click the start button, the timer begins -- done
