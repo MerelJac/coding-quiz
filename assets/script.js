@@ -28,14 +28,17 @@ var questions = [
     }
   ];
 
+
+
   function generateQuiz() {
+    var shuffledQuestions = questions.sort(() => 0.5 - Math.random());
+    console.log(shuffledQuestions);
         quiz.style.display = "flex";
         startBtn.setAttribute("style", "display: none");
-        for (var i = 0; i < questions.length; i++) {
             // clears out previous buttons / must be at top
             answerSection.innerHTML = "";
             // finds current question in the array
-            var currentQuestion = questions[i];
+            var currentQuestion = shuffledQuestions[0];
             //check progress
             console.log(currentQuestion);
             console.log(currentQuestion.question);
@@ -71,29 +74,35 @@ var questions = [
             function scoreAnswer1() {
                 if (answerButton1.textContent === currentQuestion.answer) {console.log("You get a point");
                 yourScore++;
-                generateQuiz(i++);
-                } else {console.log("you lost time"); generateQuiz(i++)}
+                generateQuiz(shuffledQuestions++);
+                } else {console.log("you lost time"); generateQuiz(shuffledQuestions++)}
                 };
             function scoreAnswer2() {
                 if (answerButton2.textContent === currentQuestion.answer) {console.log("You get a point");
                 yourScore++;
-                generateQuiz(i++);
-                 } else {console.log("you lost time"); generateQuiz(i++);}
+                generateQuiz(shuffledQuestions++);
+                 } else {console.log("you lost time"); generateQuiz(shuffledQuestions++);}
                 };
             function scoreAnswer3() {
                 if (answerButton3.textContent === currentQuestion.answer) {console.log("You get a point");
                 yourScore++;
-                generateQuiz(i++);
-                 } else {console.log("you lost time"); generateQuiz(i++);}
+                generateQuiz(shuffledQuestions++);
+                 } else {console.log("you lost time"); generateQuiz(shuffledQuestions++);}
                 };
             function scoreAnswer4() {
                 if (answerButton4.textContent === currentQuestion.answer) {console.log("You get a point");
                 yourScore++;
-                generateQuiz(i++);
-                } else {console.log("you lost time"); generateQuiz(i++);}
+                generateQuiz(shuffledQuestions++);
+                } else {console.log("you lost time"); generateQuiz(shuffledQuestions++);}
                 };
+            yourScore = yourScore;
             console.log(yourScore);
-        }};
+        };
+
+
+function generateNextQuestion() {
+
+};
 
 // set duration of timer
 var secondsLeft = 60;
