@@ -123,7 +123,7 @@ function loseTime (time) {
 }
 
 // set duration of timer
-var secondsLeft = 60;
+var secondsLeft =  10;
 // begin with a score of 0
 var yourScore = 0
 // when you click the start button, the timer begins -- done
@@ -150,6 +150,7 @@ function startTimer() {
     }, 1000);
     // when time starts, quiz pops up
 };
+//make empty string for initals 
 
 function printResults() {
     restartBtn.setAttribute("style", "display: flex");
@@ -177,14 +178,11 @@ function printResults() {
     initalsDiv.addEventListener("change", function storeInitals() {
         localStorage.setItem("initals", initalsDiv.value);
         });
-    
-
-    // show the restart button
+            // show the restart button
     restartBtn.setAttribute("style", "display: flex");
     // hide the start button
     startBtn.setAttribute("style", "display: none");
 };
-
 
 function restartPage() {
     yourScore = 0;
