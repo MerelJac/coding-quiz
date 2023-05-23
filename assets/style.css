@@ -77,22 +77,20 @@ button {
     border-radius: 10px;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 /* not working  */
 
-@media screen and (max-width: 768px) {
-    #startBtn {
+@media screen and (min-width: 768px) {
+     .quiz, #answersection {
+        flex-wrap: wrap;
         font-size: larger;
     }
     
-}
-/* edit this media query so on a phone, the boxes are side by side */
-@media screen and(max-width: 400px) {
-    #answerContainer button {
-        /* each button takes up 50% of container */
-        flex-basis: 50%;
-        /* include padding and border in the width calculation */
-        box-sizing: border-box;
-    }
 }
 
 button {

@@ -93,25 +93,30 @@ var questions = [
                 if (answerButton1.textContent === currentQuestion.answer) {console.log("You get a point");
                 yourScore++;
                 generateQuiz(shuffledQuestions++);
-                } else {console.log("you lost time"); loseTime(5); generateQuiz(shuffledQuestions++)}
+                quizTemplate.setAttribute("style", "background-color: green");
+                } else {console.log("you lost time"); timerEl.setAttribute("style", "font-weight: bolder");loseTime(5); generateQuiz(shuffledQuestions++)}
                 };
             function scoreAnswer2() {
                 if (answerButton2.textContent === currentQuestion.answer) {console.log("You get a point");
                 yourScore++;
+                quizTemplate.setAttribute("style", "background-color: green");
                 generateQuiz(shuffledQuestions++);
-                 } else {console.log("you lost time"); loseTime(5); generateQuiz(shuffledQuestions++);}
+                 } else {console.log("you lost time"); timerEl.setAttribute("style", "font-weight: bolder");loseTime(5); generateQuiz(shuffledQuestions++);}
                 };
             function scoreAnswer3() {
                 if (answerButton3.textContent === currentQuestion.answer) {console.log("You get a point");
                 yourScore++;
                 generateQuiz(shuffledQuestions++);
-                 } else {console.log("you lost time"); loseTime(5); generateQuiz(shuffledQuestions++);}
+                quizTemplate.setAttribute("style", "background-color: green");
+                 } else {console.log("you lost time"); timerEl.setAttribute("style", "font-weight: bolder");loseTime(5); generateQuiz(shuffledQuestions++);}
                 };
             function scoreAnswer4() {
                 if (answerButton4.textContent === currentQuestion.answer) {console.log("You get a point");
                 yourScore++;
+                quizTemplate.setAttribute("style", "background-color: green");
                 generateQuiz(shuffledQuestions++);
-                } else {console.log("you lost time"); loseTime(5); generateQuiz(shuffledQuestions++);}
+                } else {console.log("you lost time"); loseTime(5); generateQuiz(shuffledQuestions++);
+                timerEl.setAttribute("style", "font-weight: bolder")}
                 };
             yourScore = yourScore;
             console.log(yourScore);
@@ -123,7 +128,7 @@ function loseTime (time) {
 }
 
 // set duration of timer
-var secondsLeft = 60;
+var secondsLeft = 5;
 // begin with a score of 0
 var yourScore = 0
 // when you click the start button, the timer begins -- done
@@ -147,10 +152,6 @@ function startTimer() {
         quizTemplate.setAttribute("style", "display: none");
         resutsSection.style.display = "flex";}
     }, 1000);
-
-    
-
-
     // when time starts, quiz pops up
 };
 
