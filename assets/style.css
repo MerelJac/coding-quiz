@@ -12,11 +12,29 @@ header {
     margin: 40px;
     padding: 20px;
 }
+
+#storeData {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #DEB887;
+    box-shadow: 5px 5px #aa784d;
+    border-radius: 10px;
+    font-size: 40px;
+    display: none;
+}
 #question {
     font-size: 50px;
     padding: 10px;
 
 }
+
+
+.title {
+    margin: 5px;
+}
+
 #startBtn {
     padding-left: 20px;
     padding-right: 20px;
@@ -55,9 +73,18 @@ button {
     margin: 20px;
     max-width: fit-content;
 }
+
+input {
+    margin-bottom: 10px;
+}
 .quiz {
     align-items: center;
     flex-direction: column;
+}
+
+.scoresList {
+    line-height: 1;
+    margin: 0;
 }
 
 #results {

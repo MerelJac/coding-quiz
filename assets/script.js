@@ -48,26 +48,44 @@ var questions = [
         question: "Correct syntax to getElementByID?",
         options: ["('.id')", "('#id')", "('id')", "(id)" ],
         answer: "('#id')"
-      }
+      }, { question: "Which selector is used to target an element by its ID in CSS?", options: [".class", "#id", "$id", "@id"],
+answer: "#id"}, { question: "What is the correct syntax to apply an inline style to an HTML element?",
+options: ["<style>", "<css>", "<link>", "style attribute"],
+answer: "style attribute"}, { question: "Which CSS property is used to control the size of an element's font?",
+options: ["font-size", "font-style", "font-family", "font-color"],
+answer: "font-size"}, { question: "How can you include an external CSS file in your HTML document?",
+options: ["<script src='styles.css'>", "<link rel='stylesheet' href='styles.css'>", "<style src='styles.css'>", "<css href='styles.css'>"],
+answer: "<link rel='stylesheet' href='styles.css'>"}, {question: "Which CSS property is used to change the background color of an element?",
+options: ["color", "background-color", "background-image", "background-style"],
+answer: "background-color"},
+{ question: "What is the correct way to select all paragraph elements using CSS?",
+options: ["<p>", ".paragraph", "#paragraph", "p"],
+answer: "p"},
+{ question: "Which CSS property is used to add spacing between the letters of a text?",
+options: ["text-indent", "line-height", "word-spacing", "letter-spacing"],
+answer: "letter-spacing"},
+{ question: "Which CSS property is used to align text horizontally within its container?",
+options: ["text-align", "vertical-align", "align-content", "align-items"],
+answer: "text-align"},
+{ question: "What is the correct syntax to apply a border to an element in CSS?",
+options: ["border: 1px solid black;", "border-width: 1px; border-color: black;", "border-style: solid; border-width: 1px; border-color: black;", "border-color: black; border-style: solid; border-width: 1px;"],
+answer: "border-style: solid; border-width: 1px; border-color: black;"}
+,
+{ question: "Which CSS property is used to make an element's text bold?",
+options: ["font-style", "font-size", "font-weight", "text-decoration"],
+answer: "font-weight"}
   ];
 
   function generateQuiz() {
     var shuffledQuestions = questions.sort(() => 0.5 - Math.random());
-    // how to prevent duplicates?
-    console.log(shuffledQuestions);
         quiz.style.display = "flex";
         startBtn.setAttribute("style", "display: none");
             // clears out previous buttons / must be at top
             answerSection.innerHTML = "";
             // finds current question in the array
             var currentQuestion = shuffledQuestions[0];
-            //check progress
-            console.log(currentQuestion);
-            console.log(currentQuestion.question);
             // writes question onto the screen
             questionSection.textContent = currentQuestion.question;
-            // check work
-            console.log(currentQuestion.options);
             // create answerButton 1
             var answerButton1 = document.createElement("button");
             // text content of button is that of array[0]
@@ -91,8 +109,6 @@ var questions = [
             answerButton4.textContent = currentQuestion.options[3];
             answerSection.appendChild(answerButton4);
             answerButton4.addEventListener("click", scoreAnswer4);
-            // check work 
-            console.log(currentQuestion.answer);
             function scoreAnswer1() {
                 if (answerButton1.textContent === currentQuestion.answer) {console.log("You get a point");
                 yourScore++;
@@ -152,12 +168,11 @@ function startTimer() {
         quizTemplate.setAttribute("style", "display: none");
         resutsSection.style.display = "flex";}
     }, 1000);
-    // when time starts, quiz pops up
 };
-//make empty string for initals 
 
 function printResults() {
     restartBtn.setAttribute("style", "display: flex");
+    saveBtn.setAttribute("style", "display: flex");
     var printSection = document.createElement("h1");
     // tell the new div what to say
     printSection.innerText = "Results";        
@@ -165,14 +180,7 @@ function printResults() {
     document.body.children[2].appendChild(printSection);
     var printSection = document.createElement("p");        
     // tell the new div what to say
-    printSection.innerText = "Your Score: " + yourScore;
-    // locals storeage for score
-    // if there is no local storage, set an empty array
-    // if(localStorage.getItem('data') == null) {
-    //     localStorage.setItem('data', '[{score: , initals: ,}]');
-    // }
-    // localStorage.setItem("data.score", yourScore);
-    // append the new div to the body of the HTML file 
+    printSection.innerText = "New Score: " + yourScore;
     document.body.children[2].appendChild(printSection);
     // create an input for initals
     var initalsDiv = document.createElement("input");
@@ -202,26 +210,12 @@ function printResults() {
     })
     
      // add to the HTML site without overriding
+    printSection.innerHTML += `<p class="title">${"High Scores"}</p>`;
     for (var i = 0; i < highScoresArray.length; i++) {
-        printSection.innerHTML += `<p>${highScoresArray[i].score} ${highScoresArray[i].inital}</p>`
+        printSection.innerHTML += `<p class="scoresList">${highScoresArray[i].score} ${highScoresArray[i].inital}</p>`
         };;
     
-
-
-
-
-
-    // var newInitals = initalsDiv.addEventListener("change", function storeInitals() {
-    //     localStorage.setItem("data.initals", initalsDiv.value);
-    //     });
-    //     var pastScore = document.createElement("div");
-    // printSection.appendChild(pastScore);
-    // pastScore.innerText = "Past Score: " + localStorage.getItem("data.score") + " " + localStorage.getItem('data.initals');
-    // // add old data to new data
-    // var oldInitals = JSON.parse(localStorage.getItem('data'));
-    // oldInitals.push(newInitals);
-
-    //         // show the restart button
+// show the restart button
 
     restartBtn.setAttribute("style", "display: flex");
     // hide the start button
@@ -239,11 +233,8 @@ function restartPage() {
     resutsSection.style.display = "none";
     console.log("Page Restarted");
     restartBtn.setAttribute("style", "display: none");
+    saveBtn.setAttribute("style", "display: none");
 };
-
-
-
-// localStorage adding total points
 
 startBtn.addEventListener("click", startTimer);
 startBtn.addEventListener("click", generateQuiz);
