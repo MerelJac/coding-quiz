@@ -163,22 +163,35 @@ function printResults() {
     // tell the new div what to say
     printSection.innerText = "Your Score: " + yourScore;
     // locals storeage for score
-    localStorage.setItem("score", yourScore);
-    var pastScore = document.createElement("div");
-    printSection.appendChild(pastScore);
-    pastScore.innerText = "Past Score: " + localStorage.getItem("score") + " " + localStorage.getItem('initals');
+    // if there is no local storage, set an empty array
+    if(localStorage.getItem('data') == null) {
+        localStorage.setItem('data', '[{score: , initals: ,}]');
+    }
+    localStorage.setItem("data.score", yourScore);
     // append the new div to the body of the HTML file 
     document.body.children[2].appendChild(printSection);
+    // create an input for initals
     var initalsDiv = document.createElement("input");
-    initalsDiv.setAttribute("placeholder", "Input Initals");        
+    // add styling and placeholder to initals
+    initalsDiv.setAttribute("placeholder", "Input Initals");      
+    // append initals input to reuslts section  
     printSection.appendChild(initalsDiv);
+    // ooo add cute styling
     printSection.setAttribute("style", "display: flex; flex-direction: column; text-align: center; line-height: 3");
     initalsDiv.setAttribute("style", "text-align: center;");
     // if you type in the input box, it will save the initals in local storage
-    initalsDiv.addEventListener("change", function storeInitals() {
-        localStorage.setItem("initals", initalsDiv.value);
+    var newInitals = initalsDiv.addEventListener("change", function storeInitals() {
+        localStorage.setItem("data.initals", initalsDiv.value);
         });
+        var pastScore = document.createElement("div");
+    printSection.appendChild(pastScore);
+    pastScore.innerText = "Past Score: " + localStorage.getItem("data.score") + " " + localStorage.getItem('data.initals');
+    // add old data to new data
+    var oldInitals = localStorage.getItem('data');
+    oldInitals.push(newInitals);
+
             // show the restart button
+
     restartBtn.setAttribute("style", "display: flex");
     // hide the start button
     startBtn.setAttribute("style", "display: none");

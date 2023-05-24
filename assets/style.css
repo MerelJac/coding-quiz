@@ -2,6 +2,7 @@
 
 * {
     font-family: 'Raleway', sans-serif;
+    font-size: 40px;
 }
 
 header {
@@ -12,8 +13,9 @@ header {
     padding: 20px;
 }
 #question {
-    font-size: larger;
+    font-size: 50px;
     padding: 10px;
+
 }
 #startBtn {
     padding-left: 20px;
@@ -23,9 +25,11 @@ header {
     background-color: #DEB887;
     box-shadow: 5px 5px #aa784d;
     border-radius: 10px;
+    font-size: 40px;
 }
 
 #timer {
+    font-size: 40px;
 }
 
 #answerContainer {
@@ -40,6 +44,7 @@ button {
     padding-bottom: 10px;
     background-color: #DEB887;
     border-radius: 10px;
+    font-size: 40px;
 }
 #quiz {
     display: none;
@@ -47,7 +52,7 @@ button {
     align-items: center;
     border: solid 5px #DEB887;
     border-radius: 10px;
-
+    margin: 20px;
     max-width: fit-content;
 }
 .quiz {
