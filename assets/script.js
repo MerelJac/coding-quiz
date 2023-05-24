@@ -78,14 +78,21 @@ answer: "font-weight"}
 
   function generateQuiz() {
     var shuffledQuestions = questions.sort(() => 0.5 - Math.random());
+    // how to prevent duplicates?
+    console.log(shuffledQuestions);
         quiz.style.display = "flex";
         startBtn.setAttribute("style", "display: none");
             // clears out previous buttons / must be at top
             answerSection.innerHTML = "";
             // finds current question in the array
             var currentQuestion = shuffledQuestions[0];
+            //check progress
+            console.log(currentQuestion);
+            console.log(currentQuestion.question);
             // writes question onto the screen
             questionSection.textContent = currentQuestion.question;
+            // check work
+            console.log(currentQuestion.options);
             // create answerButton 1
             var answerButton1 = document.createElement("button");
             // text content of button is that of array[0]
@@ -109,6 +116,8 @@ answer: "font-weight"}
             answerButton4.textContent = currentQuestion.options[3];
             answerSection.appendChild(answerButton4);
             answerButton4.addEventListener("click", scoreAnswer4);
+            // check work 
+            console.log(currentQuestion.answer);
             function scoreAnswer1() {
                 if (answerButton1.textContent === currentQuestion.answer) {console.log("You get a point");
                 yourScore++;
@@ -168,11 +177,13 @@ function startTimer() {
         quizTemplate.setAttribute("style", "display: none");
         resutsSection.style.display = "flex";}
     }, 1000);
+    // when time starts, quiz pops up
 };
+//make empty string for initals 
 
 function printResults() {
-    restartBtn.setAttribute("style", "display: flex");
     saveBtn.setAttribute("style", "display: flex");
+    restartBtn.setAttribute("style", "display: flex");
     var printSection = document.createElement("h1");
     // tell the new div what to say
     printSection.innerText = "Results";        
@@ -180,7 +191,7 @@ function printResults() {
     document.body.children[2].appendChild(printSection);
     var printSection = document.createElement("p");        
     // tell the new div what to say
-    printSection.innerText = "New Score: " + yourScore;
+    printSection.innerText = "Your Score: " + yourScore;
     document.body.children[2].appendChild(printSection);
     // create an input for initals
     var initalsDiv = document.createElement("input");
@@ -190,8 +201,6 @@ function printResults() {
     printSection.appendChild(initalsDiv);
     // ooo add cute styling
     printSection.setAttribute("style", "display: flex; flex-direction: column; text-align: center; line-height: 3");
-    // initalsDiv.setAttribute("style", "text-align: center;");
-    // // if you type in the input box, it will save the initals in local storage
     saveBtn.addEventListener("click", function() {
         var scoreObject = {
             inital: initalsDiv.value, 
@@ -209,13 +218,11 @@ function printResults() {
 
     })
     
+    printSection.innerHTML += `<p>${"High Scores"}</p>`
      // add to the HTML site without overriding
-    printSection.innerHTML += `<p class="title">${"High Scores"}</p>`;
     for (var i = 0; i < highScoresArray.length; i++) {
-        printSection.innerHTML += `<p class="scoresList">${highScoresArray[i].score} ${highScoresArray[i].inital}</p>`
+        printSection.innerHTML += `<p class="list">${highScoresArray[i].score} ${highScoresArray[i].inital}</p>`
         };;
-    
-// show the restart button
 
     restartBtn.setAttribute("style", "display: flex");
     // hide the start button
@@ -232,9 +239,13 @@ function restartPage() {
     resutsSection.innerHTML = "";
     resutsSection.style.display = "none";
     console.log("Page Restarted");
+    startBtn.setAttribute("style", "display: none");
     restartBtn.setAttribute("style", "display: none");
-    saveBtn.setAttribute("style", "display: none");
 };
+
+
+
+// localStorage adding total points
 
 startBtn.addEventListener("click", startTimer);
 startBtn.addEventListener("click", generateQuiz);
