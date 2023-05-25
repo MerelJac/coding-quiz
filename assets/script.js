@@ -196,14 +196,17 @@ function printResults() {
     // create an input for initals
     var initalsDiv = document.createElement("input");
     // add styling and placeholder to initals
-    initalsDiv.setAttribute("placeholder", "Input Initals");      
+    initalsDiv.setAttribute("placeholder", "Input Initals");  
+    // we made the input in JS so we have to call it in HTML
+    initalsDiv.classList.add('input');    
     // append initals input to reuslts section  
     printSection.appendChild(initalsDiv);
     // ooo add cute styling
     printSection.setAttribute("style", "display: flex; flex-direction: column; text-align: center; line-height: 3");
     saveBtn.addEventListener("click", function() {
+        var initalInput = document.querySelector('.input');
         var scoreObject = {
-            inital: initalsDiv.value, 
+            inital: initalInput.value, 
             score: yourScore
         };
         highScoresArray.push(scoreObject);
@@ -211,12 +214,11 @@ function printResults() {
 
         // updating high scores array
         highScoresArray.sort(function(score1, score2) {
-            console.log(score1, score2)
             // sorts from greatest to least
             return score2.score - score1.score
         })
 
-    })
+    });
     
     printSection.innerHTML += `<p>${"High Scores"}</p>`
      // add to the HTML site without overriding
