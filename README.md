@@ -1,4 +1,5 @@
 # Coding-Quiz
+
 ## Description
 Timed quiz of JavaScript fundamentals for Module 05 of Univ of Oregon Coding Bootcamp. 
 
@@ -10,6 +11,10 @@ This code can be customized with different questions and answers as long as the 
 Other customizable code includes timer count. 
 
 ## Screenshots from Deployed Applications
+Below is a screenshot of the deployed page prompting a question and showing the timer.
+![alt text](./assets/quiz-question.png)
+Below is a screenshot of the deployed page of the results page with saved high sores and option buttons. 
+![alt text](./assets/quiz-resultspage.png)
 
 ## Link for Deployment 
 https://mereljac.github.io/coding-quiz/

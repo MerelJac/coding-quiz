@@ -146,7 +146,7 @@ answer: "font-weight"}
             console.log(yourScore);
         };
 
-
+// function for docing time for incorrect answer
 function loseTime (time) {
     secondsLeft -= time;
 }
@@ -203,6 +203,7 @@ function printResults() {
     printSection.appendChild(initalsDiv);
     // ooo add cute styling
     printSection.setAttribute("style", "display: flex; flex-direction: column; text-align: center; line-height: 3");
+    // click save button and store initals/score as an object array in localStorage
     saveBtn.addEventListener("click", function() {
         var initalInput = document.querySelector('.input');
         var scoreObject = {
@@ -212,7 +213,7 @@ function printResults() {
         highScoresArray.push(scoreObject);
         localStorage.setItem("highScores", JSON.stringify(highScoresArray));
 
-        // updating high scores array
+        // updating high scores array 
         highScoresArray.sort(function(score1, score2) {
             // sorts from greatest to least
             return score2.score - score1.score
