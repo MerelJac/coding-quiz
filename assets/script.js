@@ -122,19 +122,19 @@ answer: "font-weight"}
                 if (answerButton1.textContent === currentQuestion.answer) {console.log("You get a point");
                 yourScore++;
                 generateQuiz(shuffledQuestions++);
-                } else {console.log("you lost time"); timerEl.setAttribute("style", "font-weight: bolder"); loseTime(5); generateQuiz(shuffledQuestions++)}
+                } else {console.log("you lost time"); loseTime(5); generateQuiz(shuffledQuestions++)}
                 };
             function scoreAnswer2() {
                 if (answerButton2.textContent === currentQuestion.answer) {console.log("You get a point");
                 yourScore++;
                 generateQuiz(shuffledQuestions++);
-                 } else {console.log("you lost time"); timerEl.setAttribute("style", "font-weight: bolder"); loseTime(5); generateQuiz(shuffledQuestions++);}
+                 } else {console.log("you lost time"); loseTime(5); generateQuiz(shuffledQuestions++);}
                 };
             function scoreAnswer3() {
                 if (answerButton3.textContent === currentQuestion.answer) {console.log("You get a point");
                 yourScore++;
                 generateQuiz(shuffledQuestions++);
-                 } else {console.log("you lost time"); timerEl.setAttribute("style", "font-weight: bolder"); loseTime(5); generateQuiz(shuffledQuestions++);}
+                 } else {console.log("you lost time"); loseTime(5); generateQuiz(shuffledQuestions++);}
                 };
             function scoreAnswer4() {
                 if (answerButton4.textContent === currentQuestion.answer) {console.log("You get a point");
@@ -152,7 +152,7 @@ function loseTime (time) {
 }
 
 // set duration of timer
-var secondsLeft =  10;
+var secondsLeft =  30;
 // begin with a score of 0
 var yourScore = 0
 // when you click the start button, the timer begins -- done
@@ -233,7 +233,7 @@ function printResults() {
 
 function restartPage() {
     yourScore = 0;
-    secondsLeft = 60;
+    secondsLeft = 30;
     startTimer();
     timerEl.setAttribute("style", "display: flex; align-items: flex-end");
     startQuiz();
@@ -243,6 +243,7 @@ function restartPage() {
     console.log("Page Restarted");
     startBtn.setAttribute("style", "display: none");
     restartBtn.setAttribute("style", "display: none");
+    saveBtn.setAttribute("style", "display: none");
 };
 
 
